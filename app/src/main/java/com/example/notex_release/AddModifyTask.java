@@ -116,9 +116,34 @@ public class AddModifyTask extends AppCompatActivity {
     }
 
     public void deleteTask(View v) {
-        mydb.deleteTask(task_id);
-        Toast.makeText(getApplicationContext(), "Task Removed", Toast.LENGTH_SHORT).show();
-        finish();
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(AddModifyTask.this);
+        // Указываем Title
+        alertDialog.setTitle("Delete Task");
+
+        // Указываем текст сообщение
+        alertDialog.setMessage("Are you sure want to delete this Task?");
+
+
+        // Обработчик на нажатие ДА
+        alertDialog.setPositiveButton("CONFIRM", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog,int which) {
+                // Код который выполнится после закрытия окна
+                mydb.deleteTask(task_id);
+                Toast.makeText(getApplicationContext(), "Task Removed", Toast.LENGTH_SHORT).show();
+                finish();
+            }
+        });
+
+        // Обработчик на нажатие НЕТ
+        alertDialog.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                // Код который выполнится после закрытия окна
+                dialog.cancel();
+            }
+        });
+
+        // показываем Alert
+        alertDialog.show();
     }
 
 
