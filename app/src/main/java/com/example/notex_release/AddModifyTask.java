@@ -74,7 +74,7 @@ public class AddModifyTask extends AppCompatActivity {
 
             edit_text.setText(task.getString(1));
 
-            SimpleDateFormat iso8601Format = new SimpleDateFormat("E, dd MMMM yyyy");
+            SimpleDateFormat iso8601Format = new SimpleDateFormat("dd.MM.yyyy");
             try {
                 calendar.setTime(iso8601Format.parse(task.getString(2)));
             } catch (ParseException e) {
@@ -93,7 +93,7 @@ public class AddModifyTask extends AppCompatActivity {
         if (edit_text.getText().toString().trim().length() > 0) {
 
             if (isModify) {
-                mydb.updateTask(task_id, edit_text.getText().toString(), new SimpleDateFormat("E, dd MMMM yyyy").format(calendar.getTime()));
+                mydb.updateTask(task_id, edit_text.getText().toString(), new SimpleDateFormat("dd.MM.yyyy").format(calendar.getTime()));
 
 
                    /* setContentView(R.layout.task_list_row);
@@ -103,7 +103,7 @@ public class AddModifyTask extends AppCompatActivity {
 
                 Toast.makeText(getApplicationContext(), "Task Updated.", Toast.LENGTH_SHORT).show();
             } else {
-                mydb.insertTask(edit_text.getText().toString(),new SimpleDateFormat("E, dd MMMM yyyy").format(calendar.getTime()));
+                mydb.insertTask(edit_text.getText().toString(),new SimpleDateFormat("dd.MM.yyyy").format(calendar.getTime()));
 
                 Toast.makeText(getApplicationContext(), "Task Added.", Toast.LENGTH_SHORT).show();
             }
